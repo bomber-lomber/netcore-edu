@@ -1,0 +1,15 @@
+﻿@using HelloKitty.Core;
+@model Tuple<IEnumerable<FileSystemEntry>, string>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        @foreach (var parent in Model.Item1)
+        {
+            var path = PathHelper.ConvertFileSystemPathToPath(parent.GetRelativePath());
+            <li class="breadcrumb-item">
+                @Html.ActionLink(parent.Name, "Index", "File", new { path }, new { @class = "breadcrumb-item" })
+            </li>
+        }
+        <li class="breadcrumb-item active" aria-current="page">@Model.Item2</li>
+    </ol>
+</nav>

@@ -1,0 +1,42 @@
+﻿@using HelloKitty.Core;
+@model HelloKitty.Core.FileSystemEntry
+
+@{
+    var isFolder = Model is HelloKitty.Core.Directory;
+    ViewData["Title"] = "Rename " + (isFolder ? "folder" : "file");
+
+    var parents = new List<FileSystemEntry>();
+    var p = Model.Parent;
+    while (p != null)
+    {
+        parents.Insert(0, p);
+        p = p.Parent;
+    }
+    var currentName = $"Rename {Model.Name}";
+    var parentFolderPath = PathHelper.ConvertFileSystemPathToPath(Model.Parent.GetRelativePath());
+}
+@Html.Partial("FileSystemBreadcrumb", new Tuple<IEnumerable<FileSystemEntry>, string>(parents, currentName))
+
+
+<h4>@ViewData["Title"]</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="@Url.Action("Index", new { path = parentFolderPath })">Back to List</a>
+</div>
+

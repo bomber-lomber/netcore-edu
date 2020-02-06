@@ -328,3 +328,5 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+/HelloKitty.NetCore.Mvc/wwwroot/lib
+/HelloKitty.NetFramework.Mvc/lib

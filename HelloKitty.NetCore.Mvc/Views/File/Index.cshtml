@@ -1,0 +1,93 @@
+﻿@using Humanizer;
+@using HelloKitty.Core;
+@model HelloKitty.Mvc.Models.FileListModel
+
+@{
+    ViewData["Title"] = "Files";
+
+    var parents = new List<FileSystemEntry>();
+    var p = Model.CurrentFolder.Parent;
+    while(p != null)
+    {
+        parents.Insert(0, p);
+        p = p.Parent;
+    }
+    var currentFolderName = Model.CurrentFolder.Name;
+    var path = string.Empty;
+    var fileEntries = Model.
+        Folders.Select(folder => new
+        {
+            Name = folder.Name,
+            Path = PathHelper.ConvertFileSystemPathToPath(folder.GetRelativePath()),
+            Size = string.Empty,
+            Modified = folder.ModifiedDate.Humanize(),
+            IsFolder = true
+        }).
+        Union(Model.Files.Select(file => new
+        {
+            Name = file.Name,
+            Path = PathHelper.ConvertFileSystemPathToPath(file.GetRelativePath()),
+            Size = Humanizer.Bytes.ByteSize.FromBytes(file.Size).ToString("#.##"),
+            Modified = file.ModifiedDate.Humanize(),
+            IsFolder = false
+        }));
+
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        @foreach (var parent in parents)
+        {
+            path = PathHelper.ConvertFileSystemPathToPath(parent.GetRelativePath());
+            <li class="breadcrumb-item"><a asp-action="Index" asp-route-path="@path">@parent.Name</a></li>
+        }
+        <li class="breadcrumb-item active" aria-current="page">@currentFolderName</li>
+    </ol>
+</nav>
+
+<a asp-action="CreateFolder" asp-route-path="@PathHelper.ConvertFileSystemPathToPath(Model.CurrentFolder.GetRelativePath())" class="btn btn-light mb-2">New Folder</a>
+<table class="table table-sm">
+    <thead class="thead-light">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Date modified
+            </th>
+            <th>
+                Size
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in fileEntries)
+    {
+        <tr>
+            <td>
+                @if (item.IsFolder)
+                {
+                    <a asp-action="Index" asp-route-path="@Html.Raw(item.Path)" class="text-decoration-none text-warning"><i class="far fa-folder"></i></a>
+                    <a asp-action="Index" asp-route-path="@Html.Raw(item.Path)">@item.Name</a>
+                }
+                else
+                {
+                    <a asp-action="Index" asp-route-path="@Html.Raw(item.Path)" class="text-decoration-none text-secondary" target="_blank"><i class="far fa-file"></i></a>
+                    <a asp-action="Details" asp-route-path="@Html.Raw(item.Path)" target="_blank">@item.Name</a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td class="text-right">
+                <a asp-action="Rename" asp-route-path="@Html.Raw(item.Path)" asp-route-isDir="@item.IsFolder" class="btn btn-light btn-sm" title="Rename"><i class="fa fa-edit"></i></a>
+                <a asp-action="Delete" asp-route-path="@Html.Raw(item.Path)" asp-route-isDir="@item.IsFolder" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash-alt"></i></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,40 @@
+﻿@using HelloKitty.Core;
+@model HelloKitty.Core.Directory
+
+@{
+    ViewData["Title"] = "CreateFolder";
+
+    var parents = new List<FileSystemEntry>();
+    var p = Model as FileSystemEntry;
+    while (p != null)
+    {
+        parents.Insert(0, p);
+        p = p.Parent;
+    }
+    var currentFolderName = "Create folder";
+    var parentFolderPath = PathHelper.ConvertFileSystemPathToPath(Model.GetRelativePath());
+}
+
+<h1>Create folder</h1>
+
+@Html.Partial("FileSystemBreadcrumb", new Tuple<IEnumerable<FileSystemEntry>, string>(parents, currentFolderName))
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateFolder">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a href="@Url.Action("Index", new { path = parentFolderPath })">Back to List</a>
+</div>
