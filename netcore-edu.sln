@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloKitty.Core", "HelloKitty.Core\HelloKitty.Core.csproj", "{CC9236B5-0010-4D8E-B642-39A00658137E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloKitty.NetCore.Mvc", "HelloKitty.NetCore.Mvc\HelloKitty.NetCore.Mvc.csproj", "{63E1D1A1-4E72-4E3E-A4AF-4209DA164C94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloKitty.NetCore.Mvc", "HelloKitty.NetCore.Mvc\HelloKitty.NetCore.Mvc.csproj", "{63E1D1A1-4E72-4E3E-A4AF-4209DA164C94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloKitty.NetFramework.Mvc", "HelloKitty.NetFramework.Mvc\HelloKitty.NetFramework.Mvc.csproj", "{B2632D95-A702-4AB9-9E0C-6C9527FE1CC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloKitty.UI.Components", "HelloKitty.UI.Components\HelloKitty.UI.Components.csproj", "{064C04C8-5E9D-422D-8425-D00DB7CBEF15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{B2632D95-A702-4AB9-9E0C-6C9527FE1CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2632D95-A702-4AB9-9E0C-6C9527FE1CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2632D95-A702-4AB9-9E0C-6C9527FE1CC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{064C04C8-5E9D-422D-8425-D00DB7CBEF15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{064C04C8-5E9D-422D-8425-D00DB7CBEF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{064C04C8-5E9D-422D-8425-D00DB7CBEF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{064C04C8-5E9D-422D-8425-D00DB7CBEF15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

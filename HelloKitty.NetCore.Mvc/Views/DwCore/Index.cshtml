@@ -3,7 +3,21 @@
 @{
     ViewBag.Title = "Current UTC time";
 }
+    <breadcrumb id="mememe">
+        <item id="zzz1" class="test1" asp-action="Index" asp-controller="Home">Home</item>
+        <item asp-action="Index" asp-controller="File">File</item>
+        <item id="zzz2" class="test2" asp-action="Index" asp-controller="DwCore" active="true">DwCore</item>
+    </breadcrumb>
 
 <h2>@ViewBag.Title:</h2>
 <h3>@Model</h3>
+<hr />
+<h4>UTC</h4>
+<date show-utc="true" date="@DateTime.Now"></date>
+<time show-utc="true" date="@DateTime.Now"></time>
+<hr />
+<h4>Local</h4>
+<date show-utc="false" date="@DateTime.Now"></date>
+<time show-utc="false" date="@DateTime.Now"></time>
+
 
