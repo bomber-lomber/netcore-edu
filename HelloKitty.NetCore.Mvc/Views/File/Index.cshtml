@@ -37,10 +37,11 @@
 <breadcrumb>
     @foreach (var parent in parents)
     {
-        <item asp-action="Index" asp-route-path="@path">@parent.Name</item>
+        <item asp-action="Index" asp-route-path="@PathHelper.ConvertFileSystemPathToPath(parent.GetRelativePath())">@parent.Name</item>
     }
-    <item active="true">@currentFolderName</item>
+    <item icon="" action="true">@currentFolderName</item>
 </breadcrumb>
+
 <a asp-action="CreateFolder" asp-route-path="@PathHelper.ConvertFileSystemPathToPath(Model.CurrentFolder.GetRelativePath())" class="btn btn-light mb-2">New Folder</a>
 <table class="table table-sm">
     <thead class="thead-light">
