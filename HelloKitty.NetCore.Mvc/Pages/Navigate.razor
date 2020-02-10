@@ -1,0 +1,25 @@
+﻿
+@page "/navigate"
+
+<h1>Navigator</h1>
+
+@inject NavigationManager NavigationManager
+
+<button class="btn btn-primary" @onclick="NavigateToTest1">
+    Navigate to Test1
+</button>
+<button class="btn btn-primary" @onclick="NavigateToTest2">
+    Navigate to Test2
+</button>
+
+@code {
+    private void NavigateToTest1()
+    {
+        NavigationManager.NavigateTo("test1");
+    }
+    private void NavigateToTest2()
+    {
+        NavigationManager.NavigateTo("test2");
+    }
+
+}

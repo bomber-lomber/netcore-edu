@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloKitty.NetCore.Mvc", "H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloKitty.NetFramework.Mvc", "HelloKitty.NetFramework.Mvc\HelloKitty.NetFramework.Mvc.csproj", "{B2632D95-A702-4AB9-9E0C-6C9527FE1CC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloKitty.UI.Components", "HelloKitty.UI.Components\HelloKitty.UI.Components.csproj", "{064C04C8-5E9D-422D-8425-D00DB7CBEF15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloKitty.UI.Components", "HelloKitty.UI.Components\HelloKitty.UI.Components.csproj", "{064C04C8-5E9D-422D-8425-D00DB7CBEF15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

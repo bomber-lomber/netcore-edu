@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="~/" />
     <title>@ViewData["Title"] - HelloKitty.Mvc</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
@@ -31,6 +32,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="DwCore" asp-action="Index">Dw Core</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="MyBlazor" asp-action="Counter">Blazor</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -47,7 +51,7 @@
             &copy; 2020 - HelloKitty.Mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="_framework/blazor.server.js"></script>
     <script src="~/lib/font-awesome/js/all.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.min.js" asp-append-version="true"></script>

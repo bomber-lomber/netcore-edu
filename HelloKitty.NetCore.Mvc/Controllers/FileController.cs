@@ -11,7 +11,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace HelloKitty.Mvc.Controllers
 {
-    //[Route("File/{action}/{**path}", Name = "files-default")]
     public class FileController : Controller
     {
         private IConfiguration configuration;
@@ -21,7 +20,8 @@ namespace HelloKitty.Mvc.Controllers
             this.configuration = config;
 
         }
-        
+
+        [Route("Files/{**path}", Name = "files-list")]
         public ActionResult Index(string path)
         {
             var currentDir = GetFileSystem(path, true) as Directory;
@@ -34,6 +34,7 @@ namespace HelloKitty.Mvc.Controllers
             return View(model);
         }
 
+        [Route("File/{action}/{**path}", Name = "files-default")]
         public ActionResult Details(string path)
         {
             var fileInfo = GetFileSystem(path, false);
@@ -53,6 +54,7 @@ namespace HelloKitty.Mvc.Controllers
             return contentType;
         }
 
+        [Route("File/{action}/{**path}", Name = "files-default")]
         public ActionResult CreateFolder(string path)
         {
             Directory parentDir = (Directory)GetFileSystem(path, true);
@@ -61,6 +63,7 @@ namespace HelloKitty.Mvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("File/{action}/{**path}", Name = "files-default")]
         public ActionResult CreateFolder(string path, IFormCollection collection)
         {
             Directory parentDir = (Directory)GetFileSystem(path, true);
@@ -69,6 +72,7 @@ namespace HelloKitty.Mvc.Controllers
             return RedirectToAction(nameof(Index), new { path = PathHelper.ConvertFileSystemPathToPath(folder.GetRelativePath()) });
         }
 
+        [Route("File/{action}/{**path}", Name = "files-default")]
         public ActionResult Rename(string path, bool isDir = false)
         {
             var model = GetFileSystem(path, isDir);
@@ -77,6 +81,7 @@ namespace HelloKitty.Mvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("File/{action}/{**path}", Name = "files-default")]
         public ActionResult Rename(string path, bool isDir, IFormCollection collection)
         {
             try
@@ -92,6 +97,7 @@ namespace HelloKitty.Mvc.Controllers
             }
         }
 
+        [Route("File/{action}/{**path}", Name = "files-default")]
         public ActionResult Delete(string path, bool isDir = false)
         {
             if (!string.IsNullOrEmpty(path))

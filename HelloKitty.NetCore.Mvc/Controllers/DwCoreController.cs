@@ -13,5 +13,10 @@ namespace HelloKitty.NetCore.Mvc.Controllers
             var model = DateTime.UtcNow.ToString(Dynamicweb.Core.Helpers.DateHelper.DateFormatString);
             return View((object)model);
         }
+
+        public IActionResult MyBlazor()
+        {
+            return View();
+        }
     }
 }
