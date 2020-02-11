@@ -49,6 +49,7 @@ namespace HelloKitty.NetCore.Mvc
             {
                 endpoints.MapBlazorHub();
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
                 endpoints.MapFallbackToController("AppHost", "MyBlazor");
             });
         }

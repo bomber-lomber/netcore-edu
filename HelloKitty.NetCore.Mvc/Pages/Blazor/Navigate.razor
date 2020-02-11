@@ -1,5 +1,4 @@
-﻿
-@page "/navigate"
+﻿@page "/blazor/navigate"
 
 <h1>Navigator</h1>
 
@@ -15,11 +14,11 @@
 @code {
     private void NavigateToTest1()
     {
-        NavigationManager.NavigateTo("test1");
+        NavigationManager.NavigateTo("/blazor/test1");
     }
     private void NavigateToTest2()
     {
-        NavigationManager.NavigateTo("test2");
+        NavigationManager.NavigateTo("/blazor/test2");
     }
 
 }

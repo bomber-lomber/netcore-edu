@@ -1,0 +1,14 @@
+﻿@page "/tests/test1"
+@{
+    ViewData["Title"] = "Test1";
+}
+
+<h1>Test1</h1>
+<a asp-action="Index" asp-controller="Home" class="btn btn-link">Go to Home</a>
+<a asp-action="Index" asp-controller="File" class="btn btn-link">Go to Files</a>
+<br />
+<a asp-page="/Tests/Test2" class="btn btn-link">Link to Tests:Test2</a>
+<a asp-page="/Tests/Test3" class="btn btn-link">Link to Tests:Test3</a>
+<br />
+<NavLink class="nav-link" href="/blazor/navigate"> Blazor route to navigator</NavLink>
+
