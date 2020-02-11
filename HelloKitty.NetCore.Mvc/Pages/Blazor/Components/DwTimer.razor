@@ -1,0 +1,27 @@
+﻿<div class="form-group">
+    <label for="exampleInputEmail1">Current date</label>
+    <div class="input-group">
+        <input style="color:@Color" type="text" class="form-control" readonly value="@CurrentTimeFormated">
+        <div class="input-group-append">
+            <button @onclick="UpdateCurrentTime" class="btn btn-outline-secondary" type="button" id="button-addon1">Update</button>
+        </div>
+    </div>
+    <small class="form-text text-muted">Press update button to update tim.</small>
+</div>
+
+    @code {
+        [Parameter]
+        public ConsoleColor Color { get; set; } = ConsoleColor.Red;
+        public string CurrentTimeFormated { get; set; } = string.Empty;
+
+        protected override void OnInitialized()
+        {
+            UpdateCurrentTime();
+
+        }
+
+        public void UpdateCurrentTime()
+        {
+            CurrentTimeFormated = DateTime.UtcNow.ToString(Dynamicweb.Core.Helpers.DateHelper.DateFormatStringFull);
+        }
+    }

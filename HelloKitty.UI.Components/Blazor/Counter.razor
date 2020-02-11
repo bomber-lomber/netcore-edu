@@ -4,11 +4,53 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<h2 class="mt-3">Blazor compenent life cycle</h2>
+
+@foreach (var item in EventType)
+{
+    @item
+    <br />
+}
+
 @code {
     private int currentCount = 0;
+    List<string> EventType = new List<string>();
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+}
+
+@functions {
+    protected override void OnInitialized()
+    {
+        EventType.Add("OnInitialized is called");
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        EventType.Add("OnInitializedAsync is called");
+        await Task.Delay(1000);
+    }
+
+    protected override void OnParametersSet()
+    {
+        EventType.Add("OnParameterSet is called");
+    }
+    protected override async Task OnParametersSetAsync()
+    {
+        EventType.Add("OnParametersSetAsync is called");
+        await Task.Delay(1000);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        EventType.Add($"OnAfterRender is called: firstRender: {firstRender}");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        EventType.Add($"OnAfterRenderAsync is called: firstRender: {firstRender}");
+        await Task.Delay(1000);
     }
 }
